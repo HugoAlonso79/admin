@@ -2,13 +2,13 @@ import pymysql
 
 class DAOUsuario:
     def connect(self):
-        return pymysql.connect("localhost","root","","db_poo" )
+        return pymysql.connect("localhost","root","","db_chaka" )
 
     def validate(self,data):
         con = DAOUsuario.connect(self)
         cursor = con.cursor()
         try:
-            cursor.execute("select * from usuario where usuario = %s and clave = %s",(data['usuario'],data['clave'],))
+            cursor.execute("select * from usuario where correo = %s and clave = %s",(data['correo'],data['clave'],))
             return cursor.fetchone()
         except:
             return ()
@@ -19,7 +19,7 @@ class DAOUsuario:
         con = DAOUsuario.connect(self)
         cursor = con.cursor()
         try:
-            cursor.execute("INSERT INTO usuario(nombre,usuario,clave,tipo) VALUES(%s, %s, %s,%s)", (data['nombre'],data['usuario'],data['clave'],data['tipo'],)) 
+            cursor.execute("INSERT INTO usuario(nombre,correo,clave,tipo) VALUES(%s, %s, %s,%s)", (data['nombre'],data['correo'],data['clave'],data['tipo'],)) 
             con.commit()
             return True
         except:
