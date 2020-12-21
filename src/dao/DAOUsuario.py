@@ -19,7 +19,7 @@ class DAOUsuario:
         con = DAOUsuario.connect(self)
         cursor = con.cursor()
         try:
-            cursor.execute("INSERT INTO usuario(nombre,correo,clave,tipo) VALUES(%s, %s, %s,%s)", (data['nombre'],data['correo'],data['clave'],data['tipo'],)) 
+            cursor.execute("INSERT INTO usuario(nombre,usuario,correo,clave,tipo) VALUES(%s, %s, %s, %s, %s)", (data['nombre'],data['usuario'],data['correo'],data['clave'],data['tipo'],)) 
             con.commit()
             return True
         except:
