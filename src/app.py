@@ -48,16 +48,19 @@ def iniciar():
 
 @app.route('/productor/<usuario>')
 def productor(usuario):
-    data = db.sesion(usuario)
-    return render_template('productor/productor_index.html', data = data) 
+    user = db.sesion(usuario)
+    return render_template('productor/productor_index.html', user = user) 
 
-@app.route('/productor/producto')
-def productor_producto():
+@app.route('/productor/producto/<string:usuario>')
+def productor_producto(usuario):
+    user = db.sesion(usuario)
+    print(user)
     data = dbProducto.read(None)
-    return render_template('productor/productos.html', data = data)
+    return render_template('productor/productos.html', data = data, user = user)
 
-@app.route('/productor/anadirProducto', methods = ['POST', 'GET'])
-def anadirProducto():
+@app.route('/productor/anadirProducto/<string:usuario>', methods = ['POST', 'GET'])
+def anadirProducto(usuario):
+    user = db.sesion(usuario)
     if request.method == 'POST' and request.form['guardar']:
         print(request.form)
         if dbProducto.insert(request.form):
@@ -65,9 +68,9 @@ def anadirProducto():
         else:
             flash("ERROR, al crear producto")
 
-        return redirect(url_for('productor_producto'))
+        return redirect(url_for('productor_producto', usuario = user[1]))
     else:
-        return redirect(url_for('productor_producto'))
+        return redirect(url_for('productor_producto', usuario = user[1]))
 
 @app.route('/cliente/<usuario>')
 def cliente(usuario): 

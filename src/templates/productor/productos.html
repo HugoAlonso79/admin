@@ -4,8 +4,15 @@
     Productor
 {% endblock %}
 
-{% block user %}
-    {{ data[1] }}
+{% block usuario %}
+    {{ user[1] }}
+{% endblock %}
+
+{% block sidenav %}
+    <a href="#">Panel General</a>
+    <a href="/productor/producto/{{user[1]}}">Mis productos</a>
+    <a href="#">Pedidos</a>
+    <a href="#">Contáctanos</a>
 {% endblock %}
 
 {% block body %}
@@ -24,15 +31,15 @@
         <section class="content">
             <div class="box box-info">
 
-                <form class="form-horizontal" method="POST" action="/productor/anadirProducto">
+                <form class="form-horizontal" method="POST" action="/productor/anadirProducto/{{ user[1] }}">
                     <div class="box-body">
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Idproductor</label>
 
                             <div class="col-sm-10">
-                                <input name="idproductor" type="number" class="form-control" placeholder="Idproductor"
-                                    autocomplete="off" required>
+                                
+                                <input name="idproductor" type="text" readonly class="form-control" value="{{ user[0] }}">    
                             </div>
                         </div>
 

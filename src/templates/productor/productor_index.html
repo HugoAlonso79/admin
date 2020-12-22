@@ -4,8 +4,15 @@
     Productor
 {% endblock %}
 
-{% block user %}
-    {{ data[1] }}
+{% block usuario %}
+    {{ user[1] }}
+{% endblock %}
+
+{% block sidenav %}
+    <a href="#">Panel General</a>
+    <a href="/productor/producto/{{user[1]}}">Mis productos</a>
+    <a href="#">Pedidos</a>
+    <a href="#">Contáctanos</a>
 {% endblock %}
 
 {% block body %}
