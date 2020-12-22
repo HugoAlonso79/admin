@@ -22,16 +22,15 @@ def login():
 def ninicio():
     if request.method == 'POST'and request.form['registrar']:
         if db.create(request.form):
-            flash("Registrado correctamente")
             if request.form['tipo'] == 'cliente':
-                return redirect(url_for('cliente'))
+                return redirect(url_for('cliente',usuario =request.form['usuario']))
             else:
                 return redirect(url_for('productor',usuario =request.form['usuario']))
         else:
             flash("ERROR al crear usuario, emplee otro usuario")
             return render_template('registro.html')
     else:
-        return render_template('index.html')
+        return render_template('registro.html')
 
 @app.route('/iniciar', methods = ['POST'])
 def iniciar():
@@ -39,19 +38,23 @@ def iniciar():
         data = db.validate(request.form)
         if len(data) != 0:
             if data[5] == 'cliente':
-                return redirect(url_for('cliente'))
+                return redirect(url_for('cliente',usuario = data[2]))
             else:
                 return redirect(url_for('productor',usuario = data[2]))
         else:
             flash("ERROR, usuario invalido")
             return redirect(url_for('ninicio'))
     else:
-        return render_template('index.html')
+        return render_template('login.html')
 
 @app.route('/productor/<usuario>')
 def productor(usuario):
-   return render_template('productor/productor_index.html') 
-    
+    data = db.sesion(usuario)
+    return render_template('productor/productor_index.html', data = data) 
+
+@app.route('/cliente/<usuario>')
+def cliente(usuario): 
+    return render_template('cliente/tienda.html')
 
 @app.errorhandler(404)
 def page_not_found(error):

@@ -27,3 +27,14 @@ class DAOUsuario:
             return False
         finally:
             con.close()
+    
+    def sesion(self,user):
+        con = DAOUsuario.connect(self)
+        cursor = con.cursor()
+        try:
+            cursor.execute("select * from usuario where usuario = %s",(user,))
+            return cursor.fetchone()
+        except:
+            return ()
+        finally:
+            con.close()        
