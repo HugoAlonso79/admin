@@ -9,12 +9,36 @@
 {% endblock %}
 
 {% block sidenav %}
-    <a href="#">Panel General</a>
+    <a href="/productor/{{user[1]}}">Panel General</a>
     <a href="/productor/producto/{{user[1]}}">Mis productos</a>
     <a href="#">Pedidos</a>
     <a href="#">Contáctanos</a>
 {% endblock %}
 
 {% block body %}
+<div class="container datos overflow-hidden">
+    <div class="row">
+      <div class="col">
+       <div class="p-5 border bg-light">
 
+            Custom column padding
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-5 border bg-info">
+            Custom column padding
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-5 border bg-success">
+            Custom column padding
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-5 border bg-warning">
+            Custom column padding
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

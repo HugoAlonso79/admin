@@ -49,6 +49,7 @@ def iniciar():
 @app.route('/productor/<usuario>')
 def productor(usuario):
     user = db.sesion(usuario)
+    """db.sesion es una funcion para conocer el usuario que esta conectado"""                                               
     return render_template('productor/productor_index.html', user = user) 
 
 @app.route('/productor/producto/<string:usuario>')
