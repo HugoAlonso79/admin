@@ -15,3 +15,16 @@ CREATE TABLE usuario (
 
 insert into usuario(nombre,usuario,correo,clave,tipo)
 values ('chaka','chaka','chaka@chaka.com','123456','productor');
+
+
+CREATE TABLE producto (
+  idproducto int(5) NOT NULL primary key auto_increment,
+  idproductor int(5) NOT NULL,
+  categoria varchar(45) NOT NULL,
+  precio varchar(45) NOT NULL,
+  stock int(5) NOT NULL,
+  descripcion varchar(500) NOT NULL,
+  valoracion varchar(45) NOT NULL,
+  imagen varchar(45) NOT NULL,
+  titulo varchar(45) NOT NULL
+);

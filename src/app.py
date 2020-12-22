@@ -1,13 +1,12 @@
 from flask import Flask, flash, render_template, redirect, url_for, request, session
-from dao.DAOUsuario import DAOUsuario
+from dao.DAOUsuario import DAOUsuario, DAOProducto
  
 
 app = Flask(__name__)
 app.secret_key = "mys3cr3tk3y"
 db = DAOUsuario()
+dbProducto = DAOProducto()
 
-ruta1 ='/alumno'
-ruta2 = '/profesor'
 
 
 @app.route('/registro')
@@ -51,6 +50,24 @@ def iniciar():
 def productor(usuario):
     data = db.sesion(usuario)
     return render_template('productor/productor_index.html', data = data) 
+
+@app.route('/productor/producto')
+def productor_producto():
+    data = dbProducto.read(None)
+    return render_template('productor/productos.html', data = data)
+
+@app.route('/productor/anadirProducto', methods = ['POST', 'GET'])
+def anadirProducto():
+    if request.method == 'POST' and request.form['guardar']:
+        print(request.form)
+        if dbProducto.insert(request.form):
+            flash("Nuevo producto creado")
+        else:
+            flash("ERROR, al crear producto")
+
+        return redirect(url_for('productor_producto'))
+    else:
+        return redirect(url_for('productor_producto'))
 
 @app.route('/cliente/<usuario>')
 def cliente(usuario): 
