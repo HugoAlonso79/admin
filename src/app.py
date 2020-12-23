@@ -9,7 +9,6 @@ dbProducto = DAOProducto()
 
 
 
-
 @app.route('/registro')
 def index():
     return render_template('registro.html')
@@ -36,6 +35,7 @@ def ninicio():
 def iniciar():
     if request.method == 'POST'and request.form['iniciar']:
         data = db.validate(request.form)
+        print(data)
         if len(data) != 0:
             if data[5] == 'cliente':
                 return redirect(url_for('cliente',usuario = data[2]))
@@ -58,6 +58,7 @@ def productor_producto(usuario):
     user = db.sesion(usuario)
     print(user)
     data = dbProducto.read(None)
+    print(data)
     return render_template('productor/productos.html', data = data, user = user)
 
 @app.route('/productor/anadirProducto/<string:usuario>', methods = ['POST', 'GET'])
