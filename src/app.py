@@ -48,9 +48,10 @@ def iniciar():
 @app.route('/productor/<string:usuario>')
 def productor(usuario):
     user = db.sesion(usuario)
+    stock = dbProducto.stock(user[0])
     productos = dbProducto.readProductor(user[0])
     """db.sesion es una funcion para conocer el usuario que esta conectado"""                                               
-    return render_template('productor/productor_index.html', user = user, productos = productos) 
+    return render_template('productor/productor_index.html', user = user, stock = stock, productos = productos) 
 
 @app.route('/productor/producto/<string:usuario>')
 def productor_producto(usuario):
