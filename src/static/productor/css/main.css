@@ -31,7 +31,7 @@
   }
 
   .sidenav img {
-    width: 11em;
+    width: 10.6em;
     height: 4em;
     margin-bottom: 10px;
   }
@@ -235,6 +235,10 @@
 
   .presentacion {
     width: 400px;
+  }
+
+  .foto {
+    margin-left: 15%;
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

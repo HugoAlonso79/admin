@@ -15,6 +15,11 @@ def index():
 def login():
     return render_template('login.html')
 
+@app.route('/productor/contacto/<string:usuario>')
+def contactanos(usuario):
+    user = db.sesion(usuario)  
+    return render_template('productor/contactanos.html', user = user)
+
 @app.route('/nuevo_inicio', methods = ['POST', 'GET'])
 def ninicio():
     if request.method == 'POST'and request.form['registrar']:

@@ -14,7 +14,7 @@
         <!-- Side navigation -->
         
         <div class="sidenav">
-          <img src="{{ url_for('static', filename = 'productor/img/logo.png' )}}">
+          <img src="{{ url_for('static', filename = 'productor/img/chaka_logo.png' )}}">
           {% block sidenav %}
           {% endblock %}
       </div>
@@ -29,8 +29,6 @@
                           {% block usuario %}{% endblock %}
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <a href ="" class="dropdown-item" type="button">Mi perfil</a>
-                          <a href ="" class="dropdown-item" type="button">Ajustes</a>
                           <a href ="/login" class="dropdown-item" type="button">Cerrar Sesión</a>
                         </div>
                       </div>
