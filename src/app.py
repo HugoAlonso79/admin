@@ -18,7 +18,7 @@ def index():
 def login():
     return render_template('login.html')
 
-@app.route('/nuevo_inicio', methods = ['POST'])
+@app.route('/nuevo_inicio', methods = ['POST', 'GET'])
 def ninicio():
     if request.method == 'POST'and request.form['registrar']:
         if db.create(request.form):
@@ -36,18 +36,19 @@ def ninicio():
 def iniciar():
     if request.method == 'POST'and request.form['iniciar']:
         data = db.validate(request.form)
-        if len(data) != 0:
-            if data[5] == 'cliente':
-                return redirect(url_for('cliente',usuario = data[2]))
-            else:
-                return redirect(url_for('productor',usuario = data[2]))
-        else:
+        if data == None:
             flash("ERROR, usuario invalido")
             return redirect(url_for('ninicio'))
+        else:    
+            if len(data) != 0:
+                if data[5] == 'cliente':
+                    return redirect(url_for('cliente',usuario = data[2]))
+                else:
+                    return redirect(url_for('productor',usuario = data[2]))                
     else:
         return render_template('login.html')
 
-@app.route('/productor/<usuario>')
+@app.route('/productor/<string:usuario>')
 def productor(usuario):
     user = db.sesion(usuario)
     """db.sesion es una funcion para conocer el usuario que esta conectado"""                                               
@@ -70,9 +71,9 @@ def anadirProducto(usuario):
         else:
             flash("ERROR, al crear producto")
 
-        return redirect(url_for('productor_producto', usuario = user[1]))
+        return redirect(url_for('productor_producto', usuario = user[2]))
     else:
-        return redirect(url_for('productor_producto', usuario = user[1]))
+        return redirect(url_for('productor_producto', usuario = user[2]))
 
 @app.route('/cliente/<usuario>')
 def cliente(usuario): 

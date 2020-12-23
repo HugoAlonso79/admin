@@ -9,35 +9,50 @@
 {% endblock %}
 
 {% block sidenav %}
-    <a href="/productor/{{user[1]}}">Panel General</a>
-    <a href="/productor/producto/{{user[1]}}">Mis productos</a>
+    <a href="/productor/{{user[2]}}">Panel General</a>
+    <a href="/productor/producto/{{user[2]}}">Mis productos</a>
     <a href="#">Pedidos</a>
     <a href="#">Contáctanos</a>
 {% endblock %}
 
 {% block body %}
-<div class="container datos overflow-hidden">
+  <div class="container datos overflow-hidden">
     <div class="row">
-      <div class="col">
-       <div class="p-5 border bg-light">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box border bg-light">
+            <i class="fa fa-eye"></i>
+            <div class="number"> 0 </div>
+            <div class="label"> visualizaciones </div> 
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box border bg-info">
+            <i class="fa fa-shopping-cart"></i>
+            <div class="number"> 0 </div>
+            <div class="label"> ventas </div> 
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box border bg-success">
+            <i class="fa fa-list-alt"></i>
+            <div class="number"> 0 </div>
+            <div class="label"> pedidos </div> 
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="info-box border bg-warning">
+            <i class="fa fa-cubes"></i>
+            <div class="number"> 0 </div>
+            <div class="label"> stock </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            Custom column padding
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-5 border bg-info">
-            Custom column padding
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-5 border bg-success">
-            Custom column padding
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-5 border bg-warning">
-            Custom column padding
-        </div>
+  <div class="tabla col-lg-9 col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2><i class="fa fa-cube"></i><strong>Mis productos más vendidos</strong></h2>
       </div>
     </div>
   </div>
