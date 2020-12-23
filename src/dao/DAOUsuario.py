@@ -57,6 +57,22 @@ class DAOProducto:
             return ()
         finally:
             con.close()
+            
+    def readProductor(self, id):
+        con = DAOProducto.connect(self)
+        cursor = con.cursor()
+
+        try:
+            if id == None:
+                cursor.execute("SELECT * FROM producto order by nombre asc")
+            else:
+                cursor.execute("SELECT * FROM producto where idproductor = %s order by titulo asc", (id,))
+            return cursor.fetchall()
+        except:
+            return ()
+        finally:
+            con.close()
+
 
     def insert(self,data):
         con = DAOProducto.connect(self)

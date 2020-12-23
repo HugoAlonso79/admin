@@ -35,17 +35,7 @@ def ninicio():
 def iniciar():
     if request.method == 'POST'and request.form['iniciar']:
         data = db.validate(request.form)
-<<<<<<< HEAD
-        print(data)
-        if len(data) != 0:
-            if data[5] == 'cliente':
-                return redirect(url_for('cliente',usuario = data[2]))
-            else:
-                return redirect(url_for('productor',usuario = data[2]))
-        else:
-=======
         if data == None:
->>>>>>> c74b58faa9a27a477424349c2fd235ff3a710629
             flash("ERROR, usuario invalido")
             return redirect(url_for('ninicio'))
         else:    
@@ -66,7 +56,7 @@ def productor(usuario):
 @app.route('/productor/producto/<string:usuario>')
 def productor_producto(usuario):
     user = db.sesion(usuario)
-    data = dbProducto.read(None)
+    data = dbProducto.readProductor(user[0])
     print(data)
     return render_template('productor/productos.html', data = data, user = user)
 

@@ -9,110 +9,96 @@
 {% endblock %}
 
 {% block sidenav %}
-<a href="/productor/{{user[1]}}">Panel General</a>
-    <a href="/productor/producto/{{user[1]}}">Mis productos</a>
+    <a href="/productor/{{user[2]}}">Panel General</a>
+    <a href="/productor/producto/{{user[2]}}">Mis productos</a>
     <a href="#">Pedidos</a>
     <a href="#">Contáctanos</a>
 {% endblock %}
 
 {% block body %}
 
+<div class="box box-info">
 
-    <div class="container">
-        {% with msgs = get_flashed_messages() %}
-        {% if msgs %}
-            {% for text in msgs %}
-            <div class="alert alert-warning alert-dismissible show" role="alert">
-                <strong>{{text}}
+    <form class="form-horizontal" method="POST" action="/productor/anadirProducto/{{ user[2] }}">
+        <div class="box-body">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Idproductor</label>
+
+                <div class="col-sm-10">                               
+                    <input name="idproductor" type="hidden" readonly class="form-control" value="{{ user[0] }}">    
+                </div>
             </div>
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
-        <section class="content">
-            <div class="box box-info">
 
-                <form class="form-horizontal" method="POST" action="/productor/add/{{ user[1] }}">
-                    <div class="box-body">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Categoria</label>
 
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Idproductor</label>
-
-                            <div class="col-sm-10">                               
-                                <input name="idproductor" type="text" readonly class="form-control" value="{{ user[0] }}">    
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Categoria</label>
-
-                            <div class="col-sm-10">
-                                <input name="categoria" type="text" class="form-control" placeholder="Categoria"
-                                    autocomplete="off" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Precio</label>
-
-                            <div class="col-sm-10">
-                                <input name="precio" type="number" class="form-control" placeholder="Precio"
-                                    autocomplete="off" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Stock</label>
-
-                            <div class="col-sm-10">
-                                <input name="stock" type="number" class="form-control" placeholder="Stock"
-                                    autocomplete="off" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Descripción</label>
-
-                            <div class="col-sm-10">
-                                <input name="descripcion" type="text" class="form-control" placeholder="Descripción"
-                                    autocomplete="off" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Valoración</label>
-
-                            <div class="col-sm-10">
-                                <input name="valoracion" type="text" class="form-control" placeholder="Valoración"
-                                    autocomplete="off" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Imagen</label>
-
-                            <div class="col-sm-10">
-                                <input name="imagen" type="text" class="form-control" placeholder="Imagen"
-                                    autocomplete="off" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Título</label>
-
-                            <div class="col-sm-10">
-                                <input name="titulo" type="text" class="form-control" placeholder="Título"
-                                    autocomplete="off" required>
-                            </div>
-                        </div>
-
-                    </div>
-                    
-                    <div class="box-footer">
-                        <input name="guardar" type="submit" class="btn btn-info pull-right" value="Guardar">
-                    </div>
-                    
-                </form>
+                <div class="col-sm-10">
+                    <input name="categoria" type="text" class="form-control" placeholder="Categoria"
+                        autocomplete="off" required>
+                </div>
             </div>
-        </section>
-    </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Precio</label>
+
+                <div class="col-sm-10">
+                    <input name="precio" type="number" class="form-control" placeholder="Precio"
+                        autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Stock</label>
+
+                <div class="col-sm-10">
+                    <input name="stock" type="number" class="form-control" placeholder="Stock"
+                        autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Descripción</label>
+
+                <div class="col-sm-10">
+                    <input name="descripcion" type="text" class="form-control" placeholder="Descripción"
+                        autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Valoración</label>
+
+                <div class="col-sm-10">
+                    <input name="valoracion" type="text" class="form-control" placeholder="Valoración"
+                        autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Imagen</label>
+
+                <div class="col-sm-10">
+                    <input name="imagen" type="text" class="form-control" placeholder="Imagen"
+                        autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Título</label>
+
+                <div class="col-sm-10">
+                    <input name="titulo" type="text" class="form-control" placeholder="Título"
+                        autocomplete="off" required>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="box-footer">
+            <input name="guardar" type="submit" class="btn btn-info pull-right" value="Guardar">
+        </div>
+        
+    </form>
+</div>
 
 {% endblock %}

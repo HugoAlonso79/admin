@@ -28,3 +28,6 @@ CREATE TABLE producto (
   imagen varchar(45) NOT NULL,
   titulo varchar(45) NOT NULL
 );
+
+insert into producto(idproductor,categoria,precio,stock,descripcion,valoracion,imagen,titulo)
+values ( 5 ,'organico','15','34','gaaa','esta bueno','imagen2','REad');
