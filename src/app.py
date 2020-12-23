@@ -7,8 +7,6 @@ app.secret_key = "mys3cr3tk3y"
 db = DAOUsuario()
 dbProducto = DAOProducto()
 
-
-
 @app.route('/registro')
 def index():
     return render_template('registro.html')
