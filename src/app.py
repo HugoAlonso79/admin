@@ -53,16 +53,44 @@ def productor(usuario):
 
 @app.route('/productor/producto/<string:usuario>')
 def productor_producto(usuario):
+    print(usuario)
     user = db.sesion(usuario)
     data = dbProducto.readProductor(user[0])
-    print(data)
     return render_template('productor/productos.html', data = data, user = user)
+
+@app.route('/productor/add/<string:usuario>')
+def productor_add(usuario):
+    user = db.sesion(usuario)
+    data = dbProducto.readProductor(user[0])
+    return render_template('productor/add.html', data = data, user = user)
+
+@app.route('/productor/update/<string:usuario>/<int:producto>')
+def producto_update(usuario,producto):
+    user = db.sesion(usuario)
+    data = dbProducto.read(producto)
+    return render_template('productor/update.html', data = data, user = user)
 
 @app.route('/productor/anadirProducto/<string:usuario>', methods = ['POST', 'GET'])
 def anadirProducto(usuario):
     user = db.sesion(usuario)
     if request.method == 'POST' and request.form['guardar']:
         if dbProducto.insert(request.form):
+            print(request.form)
+            flash("Nuevo producto creado")
+        else:
+            flash("ERROR, al crear producto")
+
+        return redirect(url_for('productor_add', usuario = user[2]))
+    else:
+        return redirect(url_for('productor_add', usuario = user[2]))
+
+@app.route('/productor/update_lista/<string:usuario>/<int:producto>', methods = ['POST', 'GET'])
+def producto_update_lista(usuario,producto):
+    user = db.sesion(usuario)
+    if request.method == 'POST' and request.form['update']:
+        print(request.form)
+        print(producto)
+        if dbProducto.update(producto,request.form):
             flash("Nuevo producto creado")
         else:
             flash("ERROR, al crear producto")
@@ -70,6 +98,14 @@ def anadirProducto(usuario):
         return redirect(url_for('productor_producto', usuario = user[2]))
     else:
         return redirect(url_for('productor_producto', usuario = user[2]))
+
+@app.route('/productor/delete/<string:usuario>/<int:producto>')
+def eliminarProducto(usuario,producto):
+    user = db.sesion(usuario)
+    print(producto)
+    dbProducto.delete(producto)
+    return redirect(url_for('productor_producto', usuario = user[2]))
+
 
 @app.route('/cliente/<usuario>')
 def cliente(usuario): 

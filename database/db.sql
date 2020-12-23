@@ -21,7 +21,7 @@ CREATE TABLE producto (
   idproducto int(5) NOT NULL primary key auto_increment,
   idproductor int(5) NOT NULL,
   categoria varchar(45) NOT NULL,
-  precio varchar(45) NOT NULL,
+  precio double(45) NOT NULL,
   stock int(5) NOT NULL,
   descripcion varchar(500) NOT NULL,
   valoracion varchar(45) NOT NULL,
@@ -31,3 +31,19 @@ CREATE TABLE producto (
 
 insert into producto(idproductor,categoria,precio,stock,descripcion,valoracion,imagen,titulo)
 values ( 5 ,'organico','15','34','gaaa','esta bueno','imagen2','REad');
+
+CREATE TABLE  lista(
+  idlista int(5) NOT NULL primary key auto_increment,
+  idproducto int(5) NOT NULL,
+  idusuario int(5) NOT NULL
+);
+
+insert into lista(idproducto,idusuario)
+values (3,5)
+
+
+insert into producto(idproductor,categoria,precio,stock,descripcion,valoracion,imagen,titulo)
+values ( 5 ,'organico','15','34','gaaa','esta bueno','imagen2','REad');
+values ( 1 ,'Textil','52','35','gaaa','esta bueno','imagen2','REad');
+values ( 2 ,'artesania','85','78','gaaa','esta bueno','imagen2','REad');
+values ( 4 ,'organico','96','78','gaaa','esta bueno','imagen2','REad');

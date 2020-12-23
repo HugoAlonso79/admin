@@ -49,7 +49,7 @@ class DAOProducto:
 
         try:
             if id == None:
-                cursor.execute("SELECT * FROM producto order by nombre asc")
+                cursor.execute("SELECT * FROM producto order by titulo asc")
             else:
                 cursor.execute("SELECT * FROM producto where idproducto = %s order by titulo asc", (id,))
             return cursor.fetchall()
@@ -64,7 +64,7 @@ class DAOProducto:
 
         try:
             if id == None:
-                cursor.execute("SELECT * FROM producto order by nombre asc")
+                cursor.execute("SELECT * FROM producto order by titulo asc")
             else:
                 cursor.execute("SELECT * FROM producto where idproductor = %s order by titulo asc", (id,))
             return cursor.fetchall()
@@ -107,7 +107,7 @@ class DAOProducto:
         cursor = con.cursor()
 
         try:
-            cursor.execute("DELETE FROM producto where idproducto = %s", (id,))
+            cursor.execute("DELETE FROM producto where idproducto = %s", (id))
             con.commit()
             return True
         except:

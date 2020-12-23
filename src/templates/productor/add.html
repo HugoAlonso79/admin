@@ -23,7 +23,7 @@
         <div class="box-body">
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">Idproductor</label>
+                <label class="col-sm-2 control-label"></label>
 
                 <div class="col-sm-10">                               
                     <input name="idproductor" type="hidden" readonly class="form-control" value="{{ user[0] }}">    
@@ -95,7 +95,8 @@
         </div>
         
         <div class="box-footer">
-            <input name="guardar" type="submit" class="btn btn-info pull-right" value="Guardar">
+            <a href="/productor/producto/{{user[2]}}"><button type="button" class="btn btn-default">Volver</button></a>
+            <input name="guardar" type="submit" class="btn btn-info pull-right" value="Añadir">
         </div>
         
     </form>
