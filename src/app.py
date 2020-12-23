@@ -9,6 +9,7 @@ dbProducto = DAOProducto()
 
 
 
+
 @app.route('/registro')
 def index():
     return render_template('registro.html')
