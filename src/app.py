@@ -7,8 +7,6 @@ app.secret_key = "mys3cr3tk3y"
 db = DAOUsuario()
 dbProducto = DAOProducto()
 
-
-
 @app.route('/registro')
 def index():
     return render_template('registro.html')
@@ -35,17 +33,7 @@ def ninicio():
 def iniciar():
     if request.method == 'POST'and request.form['iniciar']:
         data = db.validate(request.form)
-<<<<<<< HEAD
-        print(data)
-        if len(data) != 0:
-            if data[5] == 'cliente':
-                return redirect(url_for('cliente',usuario = data[2]))
-            else:
-                return redirect(url_for('productor',usuario = data[2]))
-        else:
-=======
         if data == None:
->>>>>>> c74b58faa9a27a477424349c2fd235ff3a710629
             flash("ERROR, usuario invalido")
             return redirect(url_for('ninicio'))
         else:    
