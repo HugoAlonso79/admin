@@ -73,6 +73,16 @@ class DAOProducto:
         finally:
             con.close()
 
+    def stock(self, id):
+        con = DAOProducto.connect(self)
+        cursor = con.cursor()
+        try:
+            cursor.execute("SELECT sum(stock) FROM producto where idproductor = %s", (id,))
+            return cursor.fetchall()
+        except:
+            return ()
+        finally:
+            con.close()
 
     def insert(self,data):
         con = DAOProducto.connect(self)

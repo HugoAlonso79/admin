@@ -101,7 +101,7 @@
   
     margin-top: 20px;
 
-    margin-left: 80px;
+    margin-left: 60px;
   
     font-size: 40px;
   
@@ -231,6 +231,10 @@
   
     border-left-color: #ccc!important;
   
+  }
+
+  .presentacion {
+    width: 400px;
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
