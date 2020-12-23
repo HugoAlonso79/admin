@@ -17,7 +17,7 @@ def index():
 def login():
     return render_template('login.html')
 
-@app.route('/nuevo_inicio', methods = ['POST'])
+@app.route('/nuevo_inicio', methods = ['POST', 'GET'])
 def ninicio():
     if request.method == 'POST'and request.form['registrar']:
         if db.create(request.form):
@@ -35,6 +35,7 @@ def ninicio():
 def iniciar():
     if request.method == 'POST'and request.form['iniciar']:
         data = db.validate(request.form)
+<<<<<<< HEAD
         print(data)
         if len(data) != 0:
             if data[5] == 'cliente':
@@ -42,12 +43,21 @@ def iniciar():
             else:
                 return redirect(url_for('productor',usuario = data[2]))
         else:
+=======
+        if data == None:
+>>>>>>> c74b58faa9a27a477424349c2fd235ff3a710629
             flash("ERROR, usuario invalido")
             return redirect(url_for('ninicio'))
+        else:    
+            if len(data) != 0:
+                if data[5] == 'cliente':
+                    return redirect(url_for('cliente',usuario = data[2]))
+                else:
+                    return redirect(url_for('productor',usuario = data[2]))                
     else:
         return render_template('login.html')
 
-@app.route('/productor/<usuario>')
+@app.route('/productor/<string:usuario>')
 def productor(usuario):
     user = db.sesion(usuario)
     """db.sesion es una funcion para conocer el usuario que esta conectado"""                                               
@@ -56,7 +66,6 @@ def productor(usuario):
 @app.route('/productor/producto/<string:usuario>')
 def productor_producto(usuario):
     user = db.sesion(usuario)
-    print(user)
     data = dbProducto.read(None)
     print(data)
     return render_template('productor/productos.html', data = data, user = user)
@@ -65,15 +74,14 @@ def productor_producto(usuario):
 def anadirProducto(usuario):
     user = db.sesion(usuario)
     if request.method == 'POST' and request.form['guardar']:
-        print(request.form)
         if dbProducto.insert(request.form):
             flash("Nuevo producto creado")
         else:
             flash("ERROR, al crear producto")
 
-        return redirect(url_for('productor_producto', usuario = user[1]))
+        return redirect(url_for('productor_producto', usuario = user[2]))
     else:
-        return redirect(url_for('productor_producto', usuario = user[1]))
+        return redirect(url_for('productor_producto', usuario = user[2]))
 
 @app.route('/cliente/<usuario>')
 def cliente(usuario): 
