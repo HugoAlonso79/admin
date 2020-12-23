@@ -57,7 +57,6 @@ def productor(usuario):
 @app.route('/productor/producto/<string:usuario>')
 def productor_producto(usuario):
     user = db.sesion(usuario)
-    print(user)
     data = dbProducto.read(None)
     return render_template('productor/productos.html', data = data, user = user)
 
@@ -65,7 +64,6 @@ def productor_producto(usuario):
 def anadirProducto(usuario):
     user = db.sesion(usuario)
     if request.method == 'POST' and request.form['guardar']:
-        print(request.form)
         if dbProducto.insert(request.form):
             flash("Nuevo producto creado")
         else:
